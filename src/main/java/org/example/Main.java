@@ -1,5 +1,9 @@
 package org.example;
 
+import java.awt.datatransfer.StringSelection;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
@@ -93,6 +97,10 @@ public class Main {
             driver.switchTo().window(sudokuPadHandle);
             String finalURL = driver.getCurrentUrl();
             System.out.println(finalURL);
+
+            StringSelection stringSelection = new StringSelection(finalURL);
+            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clipboard.setContents(stringSelection, null);
         } catch (Exception e) {
             e.printStackTrace();
         }
