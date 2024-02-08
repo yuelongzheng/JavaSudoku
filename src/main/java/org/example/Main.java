@@ -1,34 +1,13 @@
 package org.example;
 
-import java.awt.datatransfer.StringSelection;
-import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
+
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gargoylesoftware.htmlunit.BrowserVersion;
-import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
-import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -57,54 +36,8 @@ public class Main {
         System.out.println(medium);
         System.out.println(hard);
 
-        WebDriver driver = new FirefoxDriver();
-        try {
-            driver.get("https://swaroopg92.github.io/penpa-edit/");
-            WebElement newGrid = driver.findElement(By.id("newboard"));
-            newGrid.click();
-            WebElement selectGridType = driver.findElement(By.id("gridtype"));
-            Select gridType = new Select(selectGridType);
-            gridType.selectByValue("sudoku");
-            WebElement applyNewGrid = driver.findElement(By.id("closeBtn_nb1"));
-            applyNewGrid.click();
-            WebElement confirmUpdateButton = driver.findElement(By.className("swal2-confirm"));
-            confirmUpdateButton.click();
-            WebElement inputSudoku = driver.findElement(By.id("input_sudoku"));
-            inputSudoku.click();
-            WebElement importTextArea = driver.findElement(By.id("iostring"));
-            importTextArea.sendKeys(hard.createImportString());
-            WebElement importSudokuButton = driver.findElement(By.id("load_input"));
-            importSudokuButton.click();
-            WebElement getOutOfImportWindow = driver.findElement(By.id("modal-input"));
-            getOutOfImportWindow.click();
-            WebElement clone = driver.findElement(By.id("duplicate"));
-            clone.click();
-            List<String> windowHandles = new ArrayList<>(driver.getWindowHandles());
-            String newTabHandle = windowHandles.get(windowHandles.size() - 1);
-            driver.switchTo().window(newTabHandle);
-            String sudokuURL = driver.getCurrentUrl();
-            System.out.println(sudokuURL);
-            driver.close();
-            driver.switchTo().window(windowHandles.get(0));
-            driver.get("https://marktekfan.github.io/sudokupad-penpa-import/");
-            WebElement inputURL = driver.findElement(By.id("input-url"));
-            inputURL.sendKeys(sudokuURL);
-            WebElement convertButton = driver.findElement(By.id("btnconvert"));
-            convertButton.click();
-            Thread.sleep(2000);
-            windowHandles = new ArrayList<>(driver.getWindowHandles());
-            String sudokuPadHandle = windowHandles.get(windowHandles.size() - 1);
-            driver.switchTo().window(sudokuPadHandle);
-            String finalURL = driver.getCurrentUrl();
-            System.out.println(finalURL);
-
-            StringSelection stringSelection = new StringSelection(finalURL);
-            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-            clipboard.setContents(stringSelection, null);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        driver.quit();
+        CreateSudokuPad createSudokuPad = new CreateSudokuPad();
+        createSudokuPad.createSudokduPadLink(medium.createImportString());
 
 //        try {
 //            Document doc = Jsoup.connect("https://nine.websudoku.com/?level=4")
