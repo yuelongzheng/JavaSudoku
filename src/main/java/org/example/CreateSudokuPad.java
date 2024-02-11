@@ -1,6 +1,7 @@
 package org.example;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -15,34 +16,39 @@ import java.util.ArrayList;
 
 public class CreateSudokuPad {
 
-    public void createSudokduPadLink(String sudokuImportString) {
+    public void createSudokduPadLink(String data) {
         FirefoxOptions options = new FirefoxOptions();
         options.addArguments("-headless");
         WebDriver driver = new FirefoxDriver(options);
         String finalURL = "";
         try {
             driver.get("https://swaroopg92.github.io/penpa-edit/");
-            clickElementByID(driver, "newboard");
+
+            // Deals with the new-grid/update button and consequent pop-up menus
+            clickElement(driver, "newboard");
             selectSudokuGrid(driver);
-            clickElementByID(driver, "closeBtn_nb1");
-            clickElementByClass(driver, "swal2-confirm");
-            clickElementByID(driver, "input_sudoku");
+            clickElement(driver, "closeBtn_nb1");
+            clickElement(driver, "swal2-confirm");
+            clickElement(driver, "input_sudoku");
 
-            insertTextToElement(driver, "iostring", sudokuImportString);
+            // Deals with the I/O Sudoku Button
+            insertTextToElement(driver, "iostring", data);
+            clickElement(driver, "load_input");
 
-            clickElementByID(driver, "load_input");
-
+            // Gets out of the I/O Sudoku pop-up menu
             Actions actions = new Actions(driver);
             actions.moveToElement(driver.findElement(By.id("modal-input-content")), 0,0);
             actions.moveByOffset(0,400).click().build().perform();
 
-            clickElementByID(driver, "duplicate");
-
+            // clicks the clone button
+            clickElement(driver, "duplicate");
             String penpaURL = getURLOfNewTab(driver);
 
+            // Go to the conversion website and convert the link
             driver.get("https://marktekfan.github.io/sudokupad-penpa-import/");
             insertTextToElement(driver, "input-url", penpaURL);
-            clickElementByID(driver, "btnconvert");
+            clickElement(driver, "btnconvert");
+            // Let the new tab load before getting the URL, otherwise auto-blank is obtained
             Thread.sleep(2000);
             finalURL = getURLOfNewTab(driver);
 
@@ -55,14 +61,16 @@ public class CreateSudokuPad {
         clipboard.setContents(stringSelection, null);
     }
 
-    public void clickElementByID(WebDriver driver, String ElementID) {
-        WebElement element = driver.findElement(By.id(ElementID));
+    public void clickElement(WebDriver driver, String ElementID) {
+        WebElement element = null;
+        try {
+            element = driver.findElement(By.id(ElementID));
+        } catch (NoSuchElementException e) {
+            element = driver.findElement(By.className(ElementID));
+        }
         element.click();
     }
-    public void clickElementByClass(WebDriver driver, String className) {
-        WebElement element = driver.findElement(By.className(className));
-        element.click();
-    }
+
     public void insertTextToElement(WebDriver driver, String ElementID, String inputText) {
         WebElement textArea = driver.findElement(By.id(ElementID));
         textArea.sendKeys(inputText);

@@ -45,6 +45,16 @@ public class NYTGameData {
         this.medium = medium;
     }
 
+    public Difficulty getDifficulty(int level) {
+        if(level == 1) {
+            return easy;
+        }
+        else if(level == 2) {
+            return medium;
+        }
+        return hard;
+    }
+
     @Override
     public String toString() {
         return "NYTGameData{" +
