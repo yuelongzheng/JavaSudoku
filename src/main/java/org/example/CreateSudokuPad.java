@@ -56,6 +56,7 @@ public class CreateSudokuPad {
             e.printStackTrace();
         }
         driver.quit();
+        System.out.println(finalURL);
         StringSelection stringSelection = new StringSelection(finalURL);
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(stringSelection, null);
