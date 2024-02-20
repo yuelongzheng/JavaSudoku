@@ -7,34 +7,37 @@ import java.util.Scanner;
 import blazing.chain.LZSEncoding;
 public class Main {
     public static void main(String[] args) throws Exception {
-        String[] availableSites = {"NYT Sudoku", "WebSudoku"};
+        String[] availableSites = {"NYT Sudoku", "WebSudoku", "Sudoku.com.au"};
         Scanner userInput = new Scanner(System.in);
         printOptions(availableSites);
         int websiteChoice = userInput.nextInt();
 
-        if(websiteChoice <= 1) {
-            websiteChoice = 1;
-        }
-        else {
-            websiteChoice = 2;
-        }
+        websiteChoice = boundWebSiteSelection(websiteChoice, availableSites.length);
 
         String[] NYTDiff = {"easy", "medium", "hard"};
         String[] WebSudokuDiff = {"easy", "medium", "hard", "evil"};
-        String[][] allDiff = {NYTDiff, WebSudokuDiff};
+        String[] SudokuComAuDiff = {"easy", "medium", "hard", "tough"};
+        String[][] allDiff = {NYTDiff, WebSudokuDiff, SudokuComAuDiff};
         printOptions(allDiff[websiteChoice-1]);
 
         int difficulty = userInput.nextInt();
         WebsiteSelection websiteSelection = new WebsiteSelection();
 
-        if(websiteChoice == 1) {
-            websiteSelection.setVariables(new NYTSudoku(), difficulty);
+        switch (websiteChoice) {
+            case 1 :
+                websiteSelection.setVariables(new NYTSudoku(), difficulty);
+                break;
+            case 2 :
+                websiteSelection.setVariables(new WebSudoku(), difficulty);
+                break;
+            case 3 :
+                websiteSelection.setVariables(new SudokuComAu(), difficulty);
+                break;
         }
-        else {
-            websiteSelection.setVariables(new WebSudoku(), difficulty);
-        }
+
         long start = System.currentTimeMillis();
         String importString = websiteSelection.getImportString();
+        websiteSelection.printIdentifier();
         int sudokuSize = 9;
         JSONSudoku JSON = new JSONSudoku(sudokuSize);
         JSON.populateGrid(importString);
@@ -53,5 +56,16 @@ public class Main {
             System.out.println(i + 1 + " for " + options[i]);
         }
     }
+
+    private static int boundWebSiteSelection(int websiteChoice, int noOfSites) {
+        if(websiteChoice <= 1) {
+            return 1;
+        }
+        if(websiteChoice >= noOfSites) {
+            return noOfSites;
+        }
+        return websiteChoice;
+    }
+
 
 }

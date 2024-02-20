@@ -15,6 +15,13 @@ public class WebsiteSelection {
         sudokuWebsite = website;
         difficulty = diff;
     }
-    public String getImportString() { return sudokuWebsite.getImportString(difficulty);}
+    public String getImportString() {;
+        return sudokuWebsite.getImportString(difficulty);
+    }
+
+    public void printIdentifier(){
+        System.out.println(sudokuWebsite.getIdentifier());
+    }
+
 
 }
