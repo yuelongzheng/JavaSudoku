@@ -11,6 +11,7 @@ JSON is compressed using [lz-string](https://github.com/tommyettinger/BlazingCha
 Available choices are 
 - [New York Times](https://www.nytimes.com/puzzles/sudoku)
 - [Websudoku](https://www.websudoku.com/)
+- [sudoku.com.au](https://sudoku.com.au/)
 
 All difficulties of all the websites can be chosen
 
