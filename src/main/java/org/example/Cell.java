@@ -6,12 +6,8 @@ public class Cell {
 
     public Cell(char inValue) {
         value = inValue;
-        if(value == '0') {
-            given = false;
-        }
-        else {
-            given = true;
-        }
+        char notGiven = '0';
+        given = value != notGiven;
     }
 
     @Override

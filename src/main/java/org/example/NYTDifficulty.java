@@ -9,6 +9,7 @@ public class NYTDifficulty {
     private String version;
     private puzzleData puzzle_data;
 
+    // setters and getters are required for jackson.databind
     public String getDay_of_week() {
         return day_of_week;
     }

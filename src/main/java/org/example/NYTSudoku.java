@@ -1,7 +1,6 @@
 package org.example;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;

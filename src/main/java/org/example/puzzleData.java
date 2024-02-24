@@ -7,12 +7,7 @@ public class puzzleData {
     private int[] puzzle;
     private int[] solution;
 
-//    public puzzleData(int[] hints, int[] puzzle, int[] solution) {
-//        this.hints = hints;
-//        this.puzzle = puzzle;
-//        this.solution = solution;
-//    }
-
+    // setters and getters are required for jackson.databind
     public int[] getHints() {
         return hints;
     }
@@ -39,8 +34,8 @@ public class puzzleData {
 
     public String createImportString() {
         StringBuilder result = new StringBuilder();
-        for(int i = 0 ; i < puzzle.length ; i++) {
-            result.append(puzzle[i]);
+        for(int c : puzzle) {
+            result.append(c);
         }
         return result.toString();
     }

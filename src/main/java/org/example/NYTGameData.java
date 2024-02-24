@@ -6,13 +6,7 @@ public class NYTGameData {
     private NYTDifficulty hard;
     private NYTDifficulty medium;
 
-//    public NYTGameData(String displayDate, Difficulty easy, Difficulty hard, Difficulty medium) {
-//        this.displayDate = displayDate;
-//        this.easy = easy;
-//        this.hard = hard;
-//        this.medium = medium;
-//    }
-
+    // setters and getters are required for jackson.databind
     public String getDisplayDate() {
         return displayDate;
     }
