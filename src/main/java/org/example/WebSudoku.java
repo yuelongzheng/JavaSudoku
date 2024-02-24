@@ -7,6 +7,11 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 
 public class WebSudoku extends SudokuWebsite {
+
+    public WebSudoku() {
+        diffArray = new String[] {"easy", "medium", "hard", "evil"};
+    }
+
     public String getImportString(int difficulty) {
         String importString = "";
         String url = getWebsiteURL(difficulty);
@@ -31,12 +36,6 @@ public class WebSudoku extends SudokuWebsite {
         return importString;
     }
     public String getWebsiteURL(int difficulty) {
-        if(difficulty >= 4) {
-            return "https://nine.websudoku.com/?level=" + '4';
-        }
-        else if (difficulty <= 1) {
-            return "https://nine.websudoku.com/?level=" + '1';
-        }
         return "https://nine.websudoku.com/?level=" + difficulty;
     }
 

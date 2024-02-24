@@ -8,6 +8,11 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 
 public class SudokuComAu extends SudokuWebsite{
+
+    public SudokuComAu() {
+        diffArray = new String[]{"easy", "medium", "hard", "tough"};
+    }
+
     public String getImportString(int difficulty) {
         String importString = "";
         String url = getWebsiteURL(difficulty);
@@ -40,6 +45,7 @@ public class SudokuComAu extends SudokuWebsite{
             unSolvedGrid = unSolvedGrid.substring(start,end);
             unSolvedGrid = unSolvedGrid.replace(",", "");
             importString = unSolvedGrid;
+            
         } catch (IOException e) {
             e.printStackTrace();
         }

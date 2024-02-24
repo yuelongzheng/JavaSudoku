@@ -9,6 +9,9 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 
 public class NYTSudoku extends SudokuWebsite{
+    public NYTSudoku() {
+        diffArray = new String[]{"easy", "medium", "hard"};
+    }
 
     public String getImportString(int difficulty) {
         String importString = "";
@@ -41,10 +44,10 @@ public class NYTSudoku extends SudokuWebsite{
         if(difficulty <= 1) {
             return "https://www.nytimes.com/puzzles/sudoku/easy";
         }
-        if(difficulty == 2) {
-            return "https://www.nytimes.com/puzzles/sudoku/medium";
+        if(difficulty >= 3) {
+            return "https://www.nytimes.com/puzzles/sudoku/hard";
         }
-        return "https://www.nytimes.com/puzzles/sudoku/hard";
+        return "https://www.nytimes.com/puzzles/sudoku/medium";
     }
 
 
