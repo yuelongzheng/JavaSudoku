@@ -2,9 +2,9 @@ package org.example;
 
 public class NYTGameData {
     private String displayDate;
-    private Difficulty easy;
-    private Difficulty hard;
-    private Difficulty medium;
+    private NYTDifficulty easy;
+    private NYTDifficulty hard;
+    private NYTDifficulty medium;
 
 //    public NYTGameData(String displayDate, Difficulty easy, Difficulty hard, Difficulty medium) {
 //        this.displayDate = displayDate;
@@ -21,31 +21,31 @@ public class NYTGameData {
         this.displayDate = displayDate;
     }
 
-    public Difficulty getEasy() {
+    public NYTDifficulty getEasy() {
         return easy;
     }
 
-    public void setEasy(Difficulty easy) {
+    public void setEasy(NYTDifficulty easy) {
         this.easy = easy;
     }
 
-    public Difficulty getHard() {
+    public NYTDifficulty getHard() {
         return hard;
     }
 
-    public void setHard(Difficulty hard) {
+    public void setHard(NYTDifficulty hard) {
         this.hard = hard;
     }
 
-    public Difficulty getMedium() {
+    public NYTDifficulty getMedium() {
         return medium;
     }
 
-    public void setMedium(Difficulty medium) {
+    public void setMedium(NYTDifficulty medium) {
         this.medium = medium;
     }
 
-    public Difficulty getDifficulty(int level) {
+    public NYTDifficulty getDifficulty(int level) {
         if(level == 1) {
             return easy;
         }

@@ -1,6 +1,6 @@
 package org.example;
 
-public class Difficulty {
+public class NYTDifficulty {
     private String day_of_week;
     private String difficulty;
     private String print_date;
