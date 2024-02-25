@@ -1,8 +1,6 @@
 package org.example;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
@@ -30,7 +28,7 @@ public class WebSudoku extends SudokuWebsite {
                 }
             }
             importString = unsolvedBoard.toString();
-        } catch (IOException e) {
+        } catch (IOException e ) {
             e.printStackTrace();
         }
         return importString;

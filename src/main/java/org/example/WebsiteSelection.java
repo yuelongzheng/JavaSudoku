@@ -3,7 +3,7 @@ package org.example;
 public class WebsiteSelection {
     private SudokuWebsite sudokuWebsite;
     private int difficulty;
-    private String[] availableSties = {"NYT Sudoku", "WebSudoku", "Sudoku.com.au"};
+    private final String[] availableSties = {"NYT Sudoku", "WebSudoku", "Sudoku.com.au"};
 
     public void setDifficulty(int diff) {
         difficulty = boundChoices(diff, sudokuWebsite.diffArray.length);
