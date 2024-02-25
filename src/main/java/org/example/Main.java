@@ -8,7 +8,7 @@ import java.util.Scanner;
 import blazing.chain.LZSEncoding;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args){
         WebsiteSelection websiteSelection = new WebsiteSelection();
         websiteSelection.printAvailableSites();
         Scanner userInput = new Scanner(System.in);
@@ -21,8 +21,7 @@ public class Main {
         long start = System.currentTimeMillis();
         String importString = websiteSelection.getImportString();
         websiteSelection.printIdentifier();
-        int sudokuSize = 9;
-        JSONSudoku JSON = new JSONSudoku(sudokuSize);
+        JSONSudoku JSON = new JSONSudoku();
         JSON.populateGrid(importString);
         String base64Compress = LZSEncoding.compressToBase64(JSON.toString());
         String url = "https://sudokupad.app/fpuz" + base64Compress;

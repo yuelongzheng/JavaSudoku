@@ -3,32 +3,26 @@ package org.example;
 import java.util.Arrays;
 
 public class JSONSudoku {
-    int size;
-    Cell[][] grid;
-
-    public JSONSudoku(int inSize) {
-        size = inSize;
-        grid = new Cell[size][size];
-    }
+    int sudokuSize = 9;
+    Cell[][] grid = new Cell[sudokuSize][sudokuSize];
 
     public void populateGrid(String importString) {
-        for(int i = 0 ; i < size; i++) {
-            for(int j = 0 ; j < size ; j++) {
-                int index = i * size + j;
-                char ch = importString.charAt(index);
-                grid[i][j] = new Cell(ch);
-            }
+        for(int i = 0 ; i < sudokuSize * sudokuSize ; i++) {
+            int row = i / sudokuSize;
+            int col = i % sudokuSize;
+            char ch = importString.charAt(i);
+            grid[row][col] = new Cell(ch);
         }
     }
 
     @Override
     public String toString() {
         String result = "{" +
-                "\"size\":" + size +
+                "\"size\":" + sudokuSize +
                 ",\"grid\":[";
-        for(int i = 0 ; i < size; i++) {
+        for(int i = 0 ; i < sudokuSize; i++) {
             result += Arrays.toString(grid[i]).replace(" ", "");
-            if(i != size - 1) {
+            if(i != sudokuSize - 1) {
                 result += ",";
             }
         }
