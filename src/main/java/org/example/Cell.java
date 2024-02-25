@@ -12,13 +12,9 @@ public class Cell {
 
     @Override
     public String toString() {
-        if(!given) {
-            return "{}";
-        }
-        return  "{" +
+        return !given ? "{}" : "{" +
                 "\"value\":" + value +
                 ",\"given\":" + true +
                 '}';
-
     }
 }
