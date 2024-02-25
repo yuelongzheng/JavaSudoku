@@ -3,8 +3,8 @@ package org.example;
 import java.util.Arrays;
 
 public class JSONSudoku {
-    int sudokuSize = 9;
-    Cell[][] grid = new Cell[sudokuSize][sudokuSize];
+    private final int sudokuSize = 9;
+    private final Cell[][] grid = new Cell[sudokuSize][sudokuSize];
 
     public void populateGrid(String importString) {
         for(int i = 0 ; i < sudokuSize * sudokuSize ; i++) {
