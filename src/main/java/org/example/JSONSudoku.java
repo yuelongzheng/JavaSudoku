@@ -17,16 +17,16 @@ public class JSONSudoku {
 
     @Override
     public String toString() {
-        String result = "{" +
-                "\"size\":" + sudokuSize +
-                ",\"grid\":[";
-        for(int i = 0 ; i < sudokuSize; i++) {
-            result += Arrays.toString(grid[i]).replace(" ", "");
-            if(i != sudokuSize - 1) {
-                result += ",";
-            }
+        StringBuilder result = new StringBuilder();
+        result.append("{\"size\":");
+        result.append(sudokuSize);
+        result.append(",\"grid\":[");
+        for(int i = 0 ; i < sudokuSize ; i++) {
+            result.append(Arrays.toString(grid[i]).replace(" ", ""));
+            result.append(",");
         }
-        result += "]}";
-        return result;
+        result.deleteCharAt(result.length()-1);
+        result.append("]}");
+        return result.toString();
     }
 }
