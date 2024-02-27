@@ -12,9 +12,11 @@ public class Main {
         WebsiteSelection websiteSelection = new WebsiteSelection();
         websiteSelection.printAvailableSites();
         Scanner userInput = new Scanner(System.in);
+        consumeNonIntInput(userInput);
         int websiteChoice = userInput.nextInt();
         websiteSelection.chooseWebsite(websiteChoice);
         websiteSelection.printDifficulties();
+        consumeNonIntInput(userInput);
         int difficulty = userInput.nextInt();
         websiteSelection.setDifficulty(difficulty);
 
@@ -33,5 +35,10 @@ public class Main {
         System.out.println("Sudoku was created in " + (finish - start) / 1000.0 + " seconds");
     }
 
+    private static void consumeNonIntInput(Scanner input) {
+        while(!input.hasNextInt()){
+            input.next();
+        }
+    }
 
 }
