@@ -1,4 +1,4 @@
-package org.example;
+package com.example.javasudoku;
 
 public class NYTDifficulty {
     private String day_of_week;

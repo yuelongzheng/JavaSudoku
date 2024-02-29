@@ -1,4 +1,4 @@
-package org.example;
+package com.example.javasudoku;
 
 public class Cell {
     char value;

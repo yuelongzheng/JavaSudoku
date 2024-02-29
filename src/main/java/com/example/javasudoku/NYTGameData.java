@@ -1,5 +1,4 @@
-package org.example;
-
+package com.example.javasudoku;
 public class NYTGameData {
     private String displayDate;
     private NYTDifficulty easy;

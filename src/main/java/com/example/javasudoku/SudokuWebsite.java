@@ -1,4 +1,4 @@
-package org.example;
+package com.example.javasudoku;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
