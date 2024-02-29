@@ -31,7 +31,7 @@ public class NYTSudoku extends SudokuWebsite{
             identifier = url + " " + nytGameData.getDisplayDate();
 
             String stringPuzzleData = nytGameData.getDifficulty(difficulty).getPuzzle_data().toString();
-            puzzleData data = objectMapper.readValue(stringPuzzleData, puzzleData.class);
+            NYTPuzzleData data = objectMapper.readValue(stringPuzzleData, NYTPuzzleData.class);
             importString = data.createImportString();
 
         } catch (IOException e) {

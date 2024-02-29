@@ -7,7 +7,7 @@ public class NYTDifficulty {
     private String published;
     private String puzzle_id;
     private String version;
-    private puzzleData puzzle_data;
+    private NYTPuzzleData puzzle_data;
 
     // setters and getters are required for jackson.databind
     public String getDay_of_week() {
@@ -58,11 +58,11 @@ public class NYTDifficulty {
         this.version = version;
     }
 
-    public puzzleData getPuzzle_data() {
+    public NYTPuzzleData getPuzzle_data() {
         return puzzle_data;
     }
 
-    public void setPuzzle_data(puzzleData puzzle_data) {
+    public void setPuzzle_data(NYTPuzzleData puzzle_data) {
         this.puzzle_data = puzzle_data;
     }
 

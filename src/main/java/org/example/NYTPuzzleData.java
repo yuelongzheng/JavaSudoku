@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Arrays;
 
-public class puzzleData {
+public class NYTPuzzleData {
     private int[] hints;
     private int[] puzzle;
     private int[] solution;
