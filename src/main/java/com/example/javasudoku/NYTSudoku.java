@@ -12,11 +12,11 @@ public class NYTSudoku extends SudokuWebsite{
         diffArray = new String[]{"easy", "medium", "hard"};
     }
 
-    public String getImportString(int difficulty) {
+    public String getImportString(String difficulty) {
         String importString = "";
-        String url = getWebsiteURL(difficulty);
+        sourceURL = getWebsiteURL(difficulty);
         try {
-            Document doc = getDocument(url);
+            Document doc = getDocument(sourceURL);
             Elements scripts = doc.getElementsByTag("script");
             String gameData = "";
             for (Element script : scripts) {
@@ -28,7 +28,7 @@ public class NYTSudoku extends SudokuWebsite{
             String JSONGameData = gameData.substring(gameData.indexOf("{"));
             ObjectMapper objectMapper =  new ObjectMapper();
             NYTGameData nytGameData = objectMapper.readValue(JSONGameData, NYTGameData.class);
-            identifier = url + " " + nytGameData.getDisplayDate();
+            date = nytGameData.getDisplayDate();
 
             String stringPuzzleData = nytGameData.getDifficulty(difficulty).getPuzzle_data().toString();
             NYTPuzzleData data = objectMapper.readValue(stringPuzzleData, NYTPuzzleData.class);
@@ -39,15 +39,9 @@ public class NYTSudoku extends SudokuWebsite{
         }
         return importString;
     }
-    public String getWebsiteURL(int difficulty) {
-        if(difficulty <= 1) {
-            return "https://www.nytimes.com/puzzles/sudoku/easy";
-        }
-        if(difficulty >= 3) {
-            return "https://www.nytimes.com/puzzles/sudoku/hard";
-        }
-        return "https://www.nytimes.com/puzzles/sudoku/medium";
-    }
 
+    public String getWebsiteURL(String difficulty) {
+        return "https://www.nytimes.com/puzzles/sudoku/" + difficulty;
+    }
 
 }

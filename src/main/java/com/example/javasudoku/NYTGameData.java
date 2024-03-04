@@ -38,11 +38,11 @@ public class NYTGameData {
         this.medium = medium;
     }
 
-    public NYTDifficulty getDifficulty(int level) {
-        if(level == 1) {
+    public NYTDifficulty getDifficulty(String level){
+        if(level.equals("easy")) {
             return easy;
         }
-        else if(level == 2) {
+        else if(level.equals("medium")){
             return medium;
         }
         return hard;

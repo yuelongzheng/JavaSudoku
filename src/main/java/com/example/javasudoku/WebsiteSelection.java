@@ -2,54 +2,33 @@ package com.example.javasudoku;
 
 public class WebsiteSelection {
     private SudokuWebsite sudokuWebsite;
-    private int difficulty;
     private final String[] availableSties = {"NYT Sudoku", "WebSudoku", "Sudoku.com.au"};
+    private String difficulty;
+    public void setDifficulty(String level){difficulty = level;}
+    public String getImportString() {return sudokuWebsite.getImportString(difficulty);}
 
-    public void setDifficulty(int diff) {
-        difficulty = boundChoices(diff, sudokuWebsite.diffArray.length);
-    }
-
-    public String getImportString() {
-        return sudokuWebsite.getImportString(difficulty);
-    }
-
-    public void printIdentifier() {
-        System.out.println(sudokuWebsite.getIdentifier());
-    }
-
-    private void printArray(String[] arr) {
-        for (int i = 0; i < arr.length; i++) {
-            System.out.println(i + 1 + " for " + arr[i]);
-        }
-    }
-
-    public void printDifficulties() {
-        printArray(sudokuWebsite.diffArray);
-    }
-
-    public void printAvailableSites() {
-        printArray(availableSties);
-    }
-
-    // Ensure that user input does not cause an array exception
-    // Returns 1 to arrSize
-    private int boundChoices(int choice, int arrSize) {
-        return Math.min(Math.max(choice, 1), arrSize);
-    }
-
-    public void chooseWebsite(int websiteChoice) {
-        websiteChoice = boundChoices(websiteChoice, availableSties.length);
-        switch (websiteChoice) {
-            case 1:
+    public void chooseWebsite(String websiteName){
+        switch(websiteName) {
+            case "NYT Sudoku":
                 sudokuWebsite = new NYTSudoku();
                 break;
-            case 2:
+            case "WebSudoku":
                 sudokuWebsite = new WebSudoku();
                 break;
-            case 3:
+            case "Sudoku.com.au":
                 sudokuWebsite = new SudokuComAu();
                 break;
         }
     }
+    public String[] getAvailableSties() {
+        return availableSties;
+    }
 
+    public String[] getDifficultyArray(){
+        return sudokuWebsite.diffArray;
+    }
+
+    public String getSourceURL(){return sudokuWebsite.sourceURL;}
+    public String getDate(){
+        return sudokuWebsite.date != null ? "Date of Sudoku  :  " + sudokuWebsite.date : "";}
 }

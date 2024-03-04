@@ -6,7 +6,8 @@ import org.jsoup.nodes.Document;
 import java.io.IOException;
 
 public abstract class SudokuWebsite {
-    String identifier;
+    String date;
+    String sourceURL;
     String[] diffArray;
 
     public Document getDocument(String url) throws IOException {
@@ -18,9 +19,7 @@ public abstract class SudokuWebsite {
                 .get();
     }
 
-    public abstract String getImportString(int difficulty);
-    public abstract String getWebsiteURL(int difficulty);
-    public String getIdentifier() {
-        return identifier;
-    }
+    public abstract String getImportString(String difficulty);
+    public abstract String getWebsiteURL(String difficulty);
+
 }

@@ -10,7 +10,7 @@ public class WebSudoku extends SudokuWebsite {
         diffArray = new String[] {"easy", "medium", "hard", "evil"};
     }
 
-    public String getImportString(int difficulty) {
+    public String getImportString(String difficulty) {
         String importString = "";
         String url = getWebsiteURL(difficulty);
         try {
@@ -18,7 +18,7 @@ public class WebSudoku extends SudokuWebsite {
             String answer = doc.getElementById("cheat").attr("value");
             String editMask = doc.getElementById("editmask").attr("value");
             String pid = doc.getElementById("pid").attr("value");
-            identifier = url + "&set_id=" + pid;
+            sourceURL = url + "&set_id=" + pid;
             StringBuilder unsolvedBoard = new StringBuilder();
             for (int i = 0; i < editMask.length(); i++) {
                 if (editMask.charAt(i) == '0') {
@@ -33,8 +33,14 @@ public class WebSudoku extends SudokuWebsite {
         }
         return importString;
     }
-    public String getWebsiteURL(int difficulty) {
-        return "https://nine.websudoku.com/?level=" + difficulty;
+    public String getWebsiteURL(String difficulty) {
+        String result = "https://nine.websudoku.com/?level=";
+        for(int i = 0 ; i < diffArray.length; i++){
+            if(diffArray[i].equals(difficulty)) {
+                result += i;
+            }
+        }
+        return result;
     }
 
 

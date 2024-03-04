@@ -13,11 +13,11 @@ public class SudokuComAu extends SudokuWebsite{
         diffArray = new String[]{"easy", "medium", "hard", "tough"};
     }
 
-    public String getImportString(int difficulty) {
+    public String getImportString(String difficulty) {
         String importString = "";
-        String url = getWebsiteURL(difficulty);
+        sourceURL = getWebsiteURL(difficulty);
         try {
-            Document doc = getDocument(url);
+            Document doc = getDocument(sourceURL);
             Elements scripts = doc.getElementsByTag("script");
             String containsUnSolved = "";
             String containsCurrPageID = "";
@@ -37,32 +37,25 @@ public class SudokuComAu extends SudokuWebsite{
             int indexOfFirstInt = indexOfFirstInt(currPageID);
             int indexOfLastInt = indexOfLastInt(currPageID);
             currPageID = currPageID.substring(indexOfFirstInt, indexOfLastInt);
-
-            identifier = url + " " + currPageID;
+            date = currPageID;
             // substring is inclusive at the start, and the ( char needs to be skipped
             int start = unSolvedGrid.indexOf('(') + 1;
             int end = unSolvedGrid.indexOf(')');
             unSolvedGrid = unSolvedGrid.substring(start,end);
             unSolvedGrid = unSolvedGrid.replace(",", "");
             importString = unSolvedGrid;
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
         return importString;
     }
 
-    public String getWebsiteURL(int difficulty) {
-        if(difficulty <= 1) {
+    public String getWebsiteURL(String difficulty) {
+        if(difficulty.equals("easy")){
             return "https://sudoku.com.au/";
         }
-        else if(difficulty == 2) {
-            return "https://sudoku.com.au/medium.aspx";
-        }
-        else if(difficulty >= 4) {
-            return "https://sudoku.com.au/tough.aspx";
-        }
-        return "https://sudoku.com.au/hard.aspx";
+        return "https://sudoku.com.au/" + difficulty +".aspx";
     }
 
     private String obtainVar(String script, String var){

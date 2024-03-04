@@ -18,5 +18,7 @@ All difficulties of all the websites can be chosen
 # Future Improvements
 
 - Add a log file for converted Websudoku sudoku
-- Improve the UI of the program
+- Improve the GUI of the program
+- Make the program into an application
+- Add shortcut buttons
 
