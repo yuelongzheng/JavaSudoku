@@ -7,11 +7,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -36,8 +34,7 @@ public class FinalController implements Initializable {
     private WebsiteSelection websiteSelection;
     private String finalURL;
     private Parent root;
-    private Stage stage;
-    private Scene scene;
+
     public FinalController(WebsiteSelection websiteSelect) {
         websiteSelection = websiteSelect;
         String importString = websiteSelection.getImportString();
@@ -57,7 +54,9 @@ public class FinalController implements Initializable {
         copySourceURL.setOnAction((ActionEvent e) -> copyTextToClipboard(e, sourceURLTextArea));
         newWebsiteButton.setOnAction((ActionEvent e) -> {
             try {
-                chooseAnotherWebsite(e);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Sudoku-Website-Selection.fxml"));
+                root = loader.load();
+                newWebsiteButton.getScene().setRoot(root);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -70,14 +69,4 @@ public class FinalController implements Initializable {
         clipboard.setContents(stringSelection, null);
     }
 
-    public void chooseAnotherWebsite(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Sudoku-Website-Selection.fxml"));
-        root = loader.load();
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        String cssLocation = this.getClass().getResource("SceneStyle.css").toExternalForm();
-        scene = new Scene(root);
-        scene.getStylesheets().add(cssLocation);
-        stage.setScene(scene);
-        stage.show();
-    }
 }

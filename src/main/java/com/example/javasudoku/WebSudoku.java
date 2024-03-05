@@ -37,7 +37,7 @@ public class WebSudoku extends SudokuWebsite {
         String result = "https://nine.websudoku.com/?level=";
         for(int i = 0 ; i < diffArray.length; i++){
             if(diffArray[i].equals(difficulty)) {
-                result += i;
+                result += i + 1;
             }
         }
         return result;
