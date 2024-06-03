@@ -29,7 +29,6 @@ public class NYTSudoku extends SudokuWebsite{
             ObjectMapper objectMapper =  new ObjectMapper();
             NYTGameData nytGameData = objectMapper.readValue(JSONGameData, NYTGameData.class);
             date = nytGameData.getDisplayDate();
-
             String stringPuzzleData = nytGameData.getDifficulty(difficulty).getPuzzle_data().toString();
             NYTPuzzleData data = objectMapper.readValue(stringPuzzleData, NYTPuzzleData.class);
             importString = data.createImportString();

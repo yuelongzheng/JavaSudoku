@@ -37,9 +37,8 @@ public class FinalController implements Initializable {
 
     public FinalController(WebsiteSelection websiteSelect) {
         websiteSelection = websiteSelect;
-        String importString = websiteSelection.getImportString();
-        JSONSudoku JSON = new JSONSudoku();
-        JSON.populateGrid(importString);
+        JSONSudoku JSON = new JSONSudoku(websiteSelect);
+        JSON.populateGrid();
         String base64Compress = LZSEncoding.compressToBase64(JSON.toString());
         String websiteString = "https://sudokupad.app/fpuz";
         finalURL = websiteString + base64Compress;
@@ -49,7 +48,12 @@ public class FinalController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         finalURLTextArea.setText(finalURL);
         sourceURLTextArea.setText(websiteSelection.getSourceURL());
-        identifierLabel.setText(websiteSelection.getDate());
+        if(websiteSelection.getSudokuWebsite().getClass() != WebSudoku.class) {
+            identifierLabel.setText("Date of Sudoku : " + websiteSelection.getDate());
+        }
+        else {
+            identifierLabel.setText("");
+        }
         copyFinalURL.setOnAction((ActionEvent e) -> copyTextToClipboard(e, finalURLTextArea));
         copySourceURL.setOnAction((ActionEvent e) -> copyTextToClipboard(e, sourceURLTextArea));
         newWebsiteButton.setOnAction((ActionEvent e) -> {

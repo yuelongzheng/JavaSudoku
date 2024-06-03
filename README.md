@@ -20,4 +20,5 @@ All difficulties of all the websites can be chosen
 - Add a log file for converted Websudoku sudoku
 - Improve the GUI of the program
 - Make the program into an application
-
+- Be able to save sudokus
+- Be able to change the shortcut buttons
