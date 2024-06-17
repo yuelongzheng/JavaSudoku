@@ -48,12 +48,7 @@ public class FinalController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         finalURLTextArea.setText(finalURL);
         sourceURLTextArea.setText(websiteSelection.getSourceURL());
-        if(websiteSelection.getSudokuWebsite().getClass() != WebSudoku.class) {
-            identifierLabel.setText("Date of Sudoku : " + websiteSelection.getDate());
-        }
-        else {
-            identifierLabel.setText("");
-        }
+        identifierLabel.setText(websiteSelection.displayDate());
         copyFinalURL.setOnAction((ActionEvent e) -> copyTextToClipboard(e, finalURLTextArea));
         copySourceURL.setOnAction((ActionEvent e) -> copyTextToClipboard(e, sourceURLTextArea));
         newWebsiteButton.setOnAction((ActionEvent e) -> {

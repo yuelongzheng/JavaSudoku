@@ -19,7 +19,8 @@ public class WebSudoku extends SudokuWebsite {
             String editMask = doc.getElementById("editmask").attr("value");
             String pid = doc.getElementById("pid").attr("value");
             sourceURL = url + "&set_id=" + pid;
-            date = "https://websudoku.com/?level=" + difficulty + "&set_id=" + pid;
+            title = "https://websudoku.com/?level=" + difficulty + "&set_id=" + pid;
+            date = "";
             StringBuilder unsolvedBoard = new StringBuilder();
             for (int i = 0; i < editMask.length(); i++) {
                 if (editMask.charAt(i) == '0') {
@@ -43,7 +44,4 @@ public class WebSudoku extends SudokuWebsite {
         }
         return result;
     }
-
-
-
 }

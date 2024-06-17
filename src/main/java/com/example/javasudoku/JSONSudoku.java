@@ -27,9 +27,9 @@ public class JSONSudoku {
         result.append("{\"size\":");
         result.append(sudokuSize);
         result.append(",\"title\":");
-        result.append(websiteSelection.getTitle());
+        result.append("\"" + websiteSelection.getTitle() + "\"");
         result.append(",\"author\":");
-        result.append(websiteSelection.getAuthor());
+        result.append("\"" + websiteSelection.getAuthor() + "\"");
         result.append(",\"ruleset\":");
         result.append("\"Normal Sudoku Rules Apply\"");
         result.append(",\"grid\":[");

@@ -7,6 +7,7 @@ import java.io.IOException;
 
 public abstract class SudokuWebsite {
     String date;
+    String title;
     String sourceURL;
     String[] diffArray;
 

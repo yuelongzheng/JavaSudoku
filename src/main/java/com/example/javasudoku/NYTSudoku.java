@@ -29,6 +29,8 @@ public class NYTSudoku extends SudokuWebsite{
             ObjectMapper objectMapper =  new ObjectMapper();
             NYTGameData nytGameData = objectMapper.readValue(JSONGameData, NYTGameData.class);
             date = nytGameData.getDisplayDate();
+            String diff = difficulty.substring(0,1).toUpperCase() + difficulty.substring(1);
+            title = date + " " + diff;
             String stringPuzzleData = nytGameData.getDifficulty(difficulty).getPuzzle_data().toString();
             NYTPuzzleData data = objectMapper.readValue(stringPuzzleData, NYTPuzzleData.class);
             importString = data.createImportString();
@@ -42,5 +44,4 @@ public class NYTSudoku extends SudokuWebsite{
     public String getWebsiteURL(String difficulty) {
         return "https://www.nytimes.com/puzzles/sudoku/" + difficulty;
     }
-
 }
