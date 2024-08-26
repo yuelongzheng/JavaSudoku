@@ -32,9 +32,17 @@ public class NYTPuzzleData {
         this.solution = solution;
     }
 
-    public String createImportString() {
+    public String getSolutionString() {
+        return createString(solution);
+    }
+
+    public String getPuzzleDataString() {
+        return createString(puzzle);
+    }
+
+    public String createString(int[] arr) {
         StringBuilder result = new StringBuilder();
-        for(int c : puzzle) {
+        for(int c : arr) {
             result.append(c);
         }
         return result.toString();

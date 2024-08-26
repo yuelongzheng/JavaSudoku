@@ -13,8 +13,8 @@ public class SudokuComAu extends SudokuWebsite{
         diffArray = new String[]{"easy", "medium", "hard", "tough"};
     }
 
-    public String getImportString(String difficulty) {
-        String importString = "";
+    public String[] getPuzzleAndSolution(String difficulty) {
+        String[] puzzleAndSolution = new String[2];
         sourceURL = getWebsiteURL(difficulty);
         try {
             Document doc = getDocument(sourceURL);
@@ -26,31 +26,36 @@ public class SudokuComAu extends SudokuWebsite{
                 if(script.html().contains("iGridUnsolved")) {
                     containsUnSolved = script.html();
                 }
-                if(script.html().contains("CurrPageID")) {
+                else if(script.html().contains("CurrPageID")) {
                     containsCurrPageID = script.html();
                 }
             }
 
             String unSolvedGrid = obtainVar(containsUnSolved, "iGridUnsolved");
             String currPageID = obtainVar(containsCurrPageID, "CurrPageID");
-
+            String solvedGrid = obtainVar(containsUnSolved, "iGridSolved");
             int indexOfFirstInt = indexOfFirstInt(currPageID);
             int indexOfLastInt = indexOfLastInt(currPageID);
             currPageID = currPageID.substring(indexOfFirstInt, indexOfLastInt);
             date = currPageID;
-            // substring is inclusive at the start, and the ( char needs to be skipped
-            int start = unSolvedGrid.indexOf('(') + 1;
-            int end = unSolvedGrid.indexOf(')');
-            unSolvedGrid = unSolvedGrid.substring(start,end);
-            unSolvedGrid = unSolvedGrid.replace(",", "");
-            importString = unSolvedGrid;
+            title = date;
+            puzzleAndSolution[0] = getDataString(unSolvedGrid);
+            puzzleAndSolution[1] = getDataString(solvedGrid);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return importString;
+        return puzzleAndSolution;
     }
 
+    public String getDataString(String raw) {
+        String result = "";
+        int start = raw.indexOf('(') + 1;
+        int end = raw.indexOf(')');
+        result = raw.substring(start, end);
+        result = result.replace(",", "");
+        return result;
+    }
     public String getWebsiteURL(String difficulty) {
         if(difficulty.equals("easy")){
             return "https://sudoku.com.au/";

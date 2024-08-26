@@ -19,8 +19,6 @@ public abstract class SudokuWebsite {
                 .header("Accept-Language", "*")
                 .get();
     }
-
-    public abstract String getImportString(String difficulty);
     public abstract String getWebsiteURL(String difficulty);
-
+    public abstract String[] getPuzzleAndSolution(String difficulty);
 }

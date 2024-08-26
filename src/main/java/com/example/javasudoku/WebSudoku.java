@@ -10,8 +10,8 @@ public class WebSudoku extends SudokuWebsite {
         diffArray = new String[] {"easy", "medium", "hard", "evil"};
     }
 
-    public String getImportString(String difficulty) {
-        String importString = "";
+    public String[] getPuzzleAndSolution(String difficulty) {
+        String[] puzzleAndSolution = new String[2];
         String url = getWebsiteURL(difficulty);
         try {
             Document doc = getDocument(url);
@@ -22,6 +22,7 @@ public class WebSudoku extends SudokuWebsite {
             title = "https://websudoku.com/?level=" + difficulty + "&set_id=" + pid;
             date = "";
             StringBuilder unsolvedBoard = new StringBuilder();
+            StringBuilder solvedBoard= new StringBuilder();
             for (int i = 0; i < editMask.length(); i++) {
                 if (editMask.charAt(i) == '0') {
                     unsolvedBoard.append(answer.charAt(i));
@@ -29,11 +30,12 @@ public class WebSudoku extends SudokuWebsite {
                     unsolvedBoard.append(0);
                 }
             }
-            importString = unsolvedBoard.toString();
+            puzzleAndSolution[0] = unsolvedBoard.toString();
+            puzzleAndSolution[1] = answer;
         } catch (IOException e ) {
             e.printStackTrace();
         }
-        return importString;
+        return puzzleAndSolution;
     }
     public String getWebsiteURL(String difficulty) {
         String result = "https://nine.websudoku.com/?level=";

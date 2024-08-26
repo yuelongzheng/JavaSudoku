@@ -12,8 +12,8 @@ public class NYTSudoku extends SudokuWebsite{
         diffArray = new String[]{"easy", "medium", "hard"};
     }
 
-    public String getImportString(String difficulty) {
-        String importString = "";
+    public String[] getPuzzleAndSolution(String difficulty) {
+        String[] puzzleAndSolution = new String[2];
         sourceURL = getWebsiteURL(difficulty);
         try {
             Document doc = getDocument(sourceURL);
@@ -33,13 +33,15 @@ public class NYTSudoku extends SudokuWebsite{
             title = date + " " + diff;
             String stringPuzzleData = nytGameData.getDifficulty(difficulty).getPuzzle_data().toString();
             NYTPuzzleData data = objectMapper.readValue(stringPuzzleData, NYTPuzzleData.class);
-            importString = data.createImportString();
+            puzzleAndSolution[0] = data.getPuzzleDataString();
+            puzzleAndSolution[1] = data.getSolutionString();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return importString;
+        return puzzleAndSolution;
     }
+
 
     public String getWebsiteURL(String difficulty) {
         return "https://www.nytimes.com/puzzles/sudoku/" + difficulty;

@@ -5,9 +5,9 @@ public class WebsiteSelection {
     private final String[] availableSties = {"NYT Sudoku", "WebSudoku", "Sudoku.com.au"};
     private String difficulty;
     private String author;
-    public void setDifficulty(String level){difficulty = level;}
-    public String getImportString() {return sudokuWebsite.getImportString(difficulty);}
 
+    public void setDifficulty(String level){difficulty = level;}
+    public String[] getPuzzleAndSolution() {return sudokuWebsite.getPuzzleAndSolution(difficulty);}
     public void chooseWebsite(String websiteName){
         switch(websiteName) {
             case "NYT Sudoku":
@@ -35,7 +35,7 @@ public class WebsiteSelection {
     public String getSourceURL(){return sudokuWebsite.sourceURL;}
 
     public String displayDate(){
-        return sudokuWebsite.date.length() == 0 ? "" : "Date of Sudoku: " + sudokuWebsite.date;
+        return sudokuWebsite.date.isEmpty() ? "" : "Date of Sudoku: " + sudokuWebsite.date;
     }
 
     public String getTitle(){
