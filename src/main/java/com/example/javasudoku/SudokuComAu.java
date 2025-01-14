@@ -49,10 +49,9 @@ public class SudokuComAu extends SudokuWebsite{
     }
 
     public String getDataString(String raw) {
-        String result = "";
         int start = raw.indexOf('(') + 1;
         int end = raw.indexOf(')');
-        result = raw.substring(start, end);
+        String result = raw.substring(start, end);
         result = result.replace(",", "");
         return result;
     }
