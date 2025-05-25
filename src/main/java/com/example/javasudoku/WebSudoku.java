@@ -22,7 +22,6 @@ public class WebSudoku extends SudokuWebsite {
             title = "https://websudoku.com/?level=" + difficulty + "&set_id=" + pid;
             date = "";
             StringBuilder unsolvedBoard = new StringBuilder();
-            StringBuilder solvedBoard= new StringBuilder();
             for (int i = 0; i < editMask.length(); i++) {
                 if (editMask.charAt(i) == '0') {
                     unsolvedBoard.append(answer.charAt(i));
@@ -40,6 +39,7 @@ public class WebSudoku extends SudokuWebsite {
     public String getWebsiteURL(String difficulty) {
         String result = "https://nine.websudoku.com/?level=";
         for(int i = 0 ; i < diffArray.length; i++){
+            // A number is used to ensure the correct difficulty is retrieved
             if(diffArray[i].equals(difficulty)) {
                 result += i + 1;
             }

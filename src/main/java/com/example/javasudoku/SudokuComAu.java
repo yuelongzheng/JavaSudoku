@@ -10,7 +10,7 @@ import java.io.IOException;
 public class SudokuComAu extends SudokuWebsite{
 
     public SudokuComAu() {
-        diffArray = new String[]{"easy", "medium", "hard", "tough"};
+        diffArray = new String[]{"Easy", "Medium", "Hard", "Expert", "Evil"};
     }
 
     public String[] getPuzzleAndSolution(String difficulty) {
@@ -26,19 +26,22 @@ public class SudokuComAu extends SudokuWebsite{
                 if(script.html().contains("iGridUnsolved")) {
                     containsUnSolved = script.html();
                 }
-                else if(script.html().contains("CurrPageID")) {
-                    containsCurrPageID = script.html();
-                }
             }
 
             String unSolvedGrid = obtainVar(containsUnSolved, "iGridUnsolved");
-            String currPageID = obtainVar(containsCurrPageID, "CurrPageID");
+            String currPageID = obtainVar(containsUnSolved, "sSourceName");
             String solvedGrid = obtainVar(containsUnSolved, "iGridSolved");
-            int indexOfFirstInt = indexOfFirstInt(currPageID);
-            int indexOfLastInt = indexOfLastInt(currPageID);
-            currPageID = currPageID.substring(indexOfFirstInt, indexOfLastInt);
+            String[] currPage = currPageID.split("\\r");
+            int index = 0;
+            for(int i = 0 ; i < currPage.length ; i++){
+                if(currPage[i].contains("sTodaysDate")){
+                    index = i;
+                }
+            }
+            String todaysDate = currPage[index];
+            currPageID = currPage[index].substring(todaysDate.indexOf('\'') +  1, todaysDate.lastIndexOf('\''));
             date = currPageID;
-            title = date;
+            title = difficulty + " " + date;
             puzzleAndSolution[0] = getDataString(unSolvedGrid);
             puzzleAndSolution[1] = getDataString(solvedGrid);
 
@@ -72,27 +75,4 @@ public class SudokuComAu extends SudokuWebsite{
         }
         return result;
     }
-
-    private int indexOfFirstInt(String str) {
-        int result = 0;
-        boolean found = false;
-        for(int i = 0 ; !found && i < str.length() ; i++) {
-            if(Character.isDigit(str.charAt(i))) {
-                result = i;
-                found = true;
-            }
-        }
-        return result;
-    }
-
-    private int indexOfLastInt(String str) {
-        int result = str.length() - 1;
-        while(!Character.isDigit(str.charAt(result))) {
-            result--;
-        }
-        // Add one so the last int can be included
-        // substring(start, end), end is not included
-        return result + 1;
-    }
-
 }
