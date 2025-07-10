@@ -25,7 +25,7 @@ In the /JavaSudoku folder run the following
     `jpackage --name Import-to-SudokuPad --input . --main-jar out/artifacts/javasudoku_jar/javasudoku.jar --icon src/main/resources/SudokuPad.icns`
 This creates the Import-to-SudokuPad-1.0.dmg file.
 
-![warning image](/scr/main/resources/Warning.png)
+![warning image](/src/main/resources/Warning.png)
 
 A warning that the file is damaged and can't be opened can be dealt with by going to System Settings > Security and clicking open anyway
 
