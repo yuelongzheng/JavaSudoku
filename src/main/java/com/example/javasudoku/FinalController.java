@@ -49,8 +49,8 @@ public class FinalController implements Initializable {
         finalURLTextArea.setText(finalURL);
         sourceURLTextArea.setText(websiteSelection.getSourceURL());
         identifierLabel.setText(websiteSelection.displayDate());
-        copyFinalURL.setOnAction((ActionEvent e) -> copyTextToClipboard(e, finalURLTextArea));
-        copySourceURL.setOnAction((ActionEvent e) -> copyTextToClipboard(e, sourceURLTextArea));
+        copyFinalURL.setOnAction((ActionEvent e) -> copyTextToClipboard(finalURLTextArea));
+        copySourceURL.setOnAction((ActionEvent e) -> copyTextToClipboard(sourceURLTextArea));
         newWebsiteButton.setOnAction((ActionEvent e) -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Sudoku-Website-Selection.fxml"));
@@ -62,7 +62,7 @@ public class FinalController implements Initializable {
         });
     }
 
-    public void copyTextToClipboard(ActionEvent event, TextArea textArea) {
+    public void copyTextToClipboard(TextArea textArea) {
         StringSelection stringSelection = new StringSelection(textArea.getText());
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(stringSelection, null);

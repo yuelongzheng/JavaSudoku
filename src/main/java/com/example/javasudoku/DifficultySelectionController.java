@@ -17,8 +17,6 @@ public class DifficultySelectionController implements Initializable {
     @FXML
     private ChoiceBox<String> difficultyChoiceBox;
     @FXML
-    private Label selectDifficultyText;
-    @FXML
     private Button difficultyConfirmationButton;
     private WebsiteSelection websiteSelection;
     private Parent root;
