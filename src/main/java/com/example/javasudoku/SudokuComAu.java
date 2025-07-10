@@ -20,7 +20,6 @@ public class SudokuComAu extends SudokuWebsite{
             Document doc = getDocument(sourceURL);
             Elements scripts = doc.getElementsByTag("script");
             String containsUnSolved = "";
-            String containsCurrPageID = "";
 
             for(Element script : scripts) {
                 if(script.html().contains("iGridUnsolved")) {

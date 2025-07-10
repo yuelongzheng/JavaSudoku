@@ -15,10 +15,23 @@ Available choices are
 
 All difficulties of all the websites can be chosen
 
-# Future Improvements
+# Runtime Environment
+- Java runtime : Open JDK 17
 
+# Creating a Mac .dmg
+
+In the /JavaSudoku folder run the following 
+    
+    `jpackage --name Import-to-SudokuPad --input . --main-jar out/artifacts/javasudoku_jar/javasudoku.jar --icon src/main/resources/SudokuPad.icns`
+This creates the Import-to-SudokuPad-1.0.dmg file.
+
+![warning image](/scr/main/resources/Warning.png)
+
+A warning that the file is damaged and can't be opened can be dealt with by going to System Settings > Security and clicking open anyway
+
+# Future Improvements
 - Add a log file for converted Websudoku sudoku
 - Improve the GUI of the program
-- Make the program into an application
+- Make the program into a Windows Executable
 - Be able to save sudokus
 - Be able to change the shortcut buttons
